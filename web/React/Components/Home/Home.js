@@ -17,6 +17,13 @@ function Home(props) {
         setInit(false);
     });
 
+    function set() {
+        setLoad(false);
+        setTimeout(() => {
+            setUpdate(true);
+        }, 1000);
+    }
+
     if (Load) {
         return (
             <div class="hero is-fullheight">
@@ -35,7 +42,7 @@ function Home(props) {
                                                 <input class="input" type="text" placeholder="Buscar" />
                                             </div>
                                             <div class="control">
-                                                <a class="button is-info">
+                                                <a class="button is-info" onClick={set.bind(this)}>
                                                     {Search}
                                                 </a>
                                             </div>
@@ -45,7 +52,7 @@ function Home(props) {
                                         SerachOpc.map((item, i) => {
                                             var valid = i == (SerachOpc.length - 1);
                                             return (
-                                                <a class="panel-block is-active" style={{ borderBottomLeftRadius: valid ? '10px' : null, borderBottomRightRadius: valid ? '10px' : null, }}>
+                                                <a class="panel-block is-active" style={{ borderBottomLeftRadius: valid ? '10px' : null, borderBottomRightRadius: valid ? '10px' : null, }} onClick={set.bind(this)}>
                                                     <span class="panel-icon">
                                                         <i class="fas fa-book" aria-hidden="true"></i>
                                                     </span>
@@ -59,7 +66,7 @@ function Home(props) {
                         </div>
                         <div class="column is-fullheight Scroll User">
                             <p class="border is-size-4 has-text-link" style={{ marginBottom: '10px', }}>{LastAdd}</p>
-                            <ListMedia Array={Files} history={props.history}/>
+                            <ListMedia Array={Files} history={props.history} />
                         </div>
                     </div>
                 </div>
